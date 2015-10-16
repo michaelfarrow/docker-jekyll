@@ -7,19 +7,13 @@ RUN apt-get update \
     python-pygments \
   && apt-get clean
 
-RUN gem install \
-  github-pages \
-  jekyll \
-  jekyll-redirect-from \
-  kramdown \
-  rdiscount \
-  rouge \
-  redcarpet
+ENV BUNDLE_JOBS=2 \
+    BUNDLE_PATH=/bundle
 
-RUN gem install jekyll-picture-tag -v "~> 0.2.3"
-
+VOLUME /bundle
 VOLUME /src
 EXPOSE 4000
 
 WORKDIR /src
-ENTRYPOINT ["jekyll"]
+
+ENTRYPOINT []
